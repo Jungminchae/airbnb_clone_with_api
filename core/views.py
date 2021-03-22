@@ -1,9 +1,7 @@
-from django.core import serializers
-from django.http import HttpResponse
-from rooms.models import Room 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
+@api_view(["GET"])
 def list_rooms(request):
-    data = serializers.serialize("json", Room.objects.all())
-    response = HttpResponse(content=data)
-    return response
+    return Response()
