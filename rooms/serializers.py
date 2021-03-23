@@ -1,12 +1,12 @@
 from rest_framework import serializers
+from .models import Room
 
 
-class RoomSerializer(serializers.Serializer):
+class RoomSerializer(serializers.ModelSerializer):
     """
     Serializer => python 객체에서 json 객체로 바꿔 주는 것
     """
 
-    name = serializers.CharField(max_length=140)
-    price = serializers.IntegerField()
-    bedrooms = serializers.IntegerField()
-    instant_book = serializers.BooleanField()
+    class Meta:
+        model = Room
+        fields = ("name", "price", "instant_book", "user")
