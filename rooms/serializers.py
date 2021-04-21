@@ -12,4 +12,4 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = ("pk", "name", "price", "user")
+        exclude = ("modified",)
