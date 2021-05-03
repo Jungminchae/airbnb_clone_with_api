@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from users.serializers import UserSerializer
+from users.serializers import RelatedUserSerializer
 from .models import Room
 
 # 이것은 매직
@@ -8,7 +8,7 @@ class ReadRoomSerializer(serializers.ModelSerializer):
     Serializer => python 객체에서 json 객체로 바꿔 주는 것
     """
 
-    user = UserSerializer()
+    user = ReadRoomSerializer()
 
     class Meta:
         model = Room
