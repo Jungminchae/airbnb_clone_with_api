@@ -2,24 +2,16 @@ from rest_framework import serializers
 from users.serializers import RelatedUserSerializer
 from .models import Room
 
-# 이것은 매직
-class ReadRoomSerializer(serializers.ModelSerializer):
-    """
-    Serializer => python 객체에서 json 객체로 바꿔 주는 것
-    """
+
+# This is 수동
+class RoomSerializer(serializers.ModelSerializer):
 
     user = RelatedUserSerializer()
 
     class Meta:
         model = Room
         exclude = ("modified",)
-
-
-# This is 수동
-class WriteRoomSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Room
-        exclude = ("user", "modified", "created")
+        read_only_fields = ("user", "id", "created", "updated")
 
     def validate(self, data):
         if self.instance:
