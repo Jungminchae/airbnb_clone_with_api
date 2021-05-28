@@ -82,7 +82,7 @@ def login(request):
     if user is not None:
         # jwt 는 해독을 못하게 하는게 목적이 아니고 token을 누가 수정했는지 안했는지를 확인하는 목적
         encoded_jwt = jwt.encode(
-            {"id": user.pk}, settings.SECRET_KEY, algorithm="HS256"
+            {"pk": user.pk}, settings.SECRET_KEY, algorithm="HS256"
         )
         return Response(data={"token": encoded_jwt})
     else:
