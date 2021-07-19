@@ -3,7 +3,6 @@ from users.serializers import RelatedUserSerializer
 from .models import Room
 
 
-# This is 수동
 class RoomSerializer(serializers.ModelSerializer):
 
     user = RelatedUserSerializer()
@@ -32,3 +31,8 @@ class RoomSerializer(serializers.ModelSerializer):
             if user.is_authenticated:
                 return obj in user.fav.all()
         return False
+
+    def create(self, validated_data):
+        user = self.context.get("request").user
+        room = Room.objects.create(**validated_data, user=user)
+        return room
