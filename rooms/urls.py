@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-import views
+from . import views
 
 
 app_name = "rooms"

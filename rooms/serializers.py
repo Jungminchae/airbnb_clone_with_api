@@ -29,7 +29,7 @@ class RoomSerializer(serializers.ModelSerializer):
         if request:
             user = request.user
             if user.is_authenticated:
-                return obj in user.fav.all()
+                return obj in user.favs.all()
         return False
 
     def create(self, validated_data):
