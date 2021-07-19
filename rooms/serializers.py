@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from users.serializers import RelatedUserSerializer
+from users.serializers import UserSerializer
 from .models import Room
 
 
 class RoomSerializer(serializers.ModelSerializer):
 
-    user = RelatedUserSerializer()
+    user = UserSerializer()
     is_fav = serializers.SerializerMethodField()
 
     class Meta:
