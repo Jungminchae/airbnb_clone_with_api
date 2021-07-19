@@ -36,8 +36,8 @@ class RoomsView(APIView):
         paginator = OwnPagination()
         rooms = Room.objects.all()
         results = paginator.paginate_queryset(rooms, request)
-        serializers = RoomSerializer(results, many=True).data
-        return paginator.get_paginated_response(serializers)
+        serializers = RoomSerializer(results, many=True, context={"request": request})
+        return paginator.get_paginated_response(serializers.data)
 
     def post(self, request):
         # POST => Create
